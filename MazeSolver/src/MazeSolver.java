@@ -1,9 +1,19 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.FileNotFoundException;
+
+
+
+
 
 public class MazeSolver {
 	
+		static int[][] m = {
+				{2, 0, 1, 1},
+				{1, 1, 1, 0},
+				{0, 0, 0, 1},
+		};
+		
+		
+		
 	//0 == wall
 	//1 == path
 	//2 == destination
@@ -37,10 +47,10 @@ public class MazeSolver {
 			//up
 			if(isValid(x - 1, y, m)) {
 				if(m.maze[x - 1][y] == 2) {
-					System.out.println("Moved down.");
+					System.out.println("Moved up.");
 					return true;
 				} else if (m.maze[x - 1][y] == 1) {
-					System.out.println("Moved down.");
+					System.out.println("Moved up.");
 					m.path.push(new Position(x - 1,y));
 					continue;
 				}
@@ -50,10 +60,10 @@ public class MazeSolver {
 			//left
 			if(isValid(x, y - 1, m)) {
 				if(m.maze[x][y - 1] == 2) {
-					System.out.println("Moved down.");
+					System.out.println("Moved left.");
 					return true;
 				} else if (m.maze[x][y - 1] == 1) {
-					System.out.println("Moved down.");
+					System.out.println("Moved left.");
 					m.path.push(new Position(x, y - 1));
 					continue;
 				}
@@ -63,10 +73,10 @@ public class MazeSolver {
 			//right
 			if(isValid(x, y + 1, m)) {
 				if(m.maze[x][y + 1] == 2) {
-					System.out.println("Moved down.");
+					System.out.println("Moved right.");
 					return true;
 				} else if (m.maze[x][y + 1] == 1) {
-					System.out.println("Moved down.");
+					System.out.println("Moved right.");
 					m.path.push(new Position(x, y + 1));
 					continue;
 				}
@@ -92,19 +102,50 @@ public class MazeSolver {
 	}
 	
 
-	public static void main(String[] args) {
-		List<Maze> mazes = new ArrayList<Maze>();
+	public static void main(String[] args) throws FileNotFoundException {
+//		List<Maze> mazes = new ArrayList<Maze>();
+//		
+//		
+//		Scanner sc = new Scanner(new File("mazes.txt"));
+//		int rows = sc.nextInt();
+//		
+//		for(int i=0; i<rows; i++) {
+//			
+//			
+//			
+//		}
+//		
+//		
+//		
+//		
+//		int i=0;
+//		
+//		while (i < mazes.size()) {
+//			if(checkMazeSolution(mazes.get(i))) {
+//				System.out.println("You won. The path to get cheese is: "); 
+//				mazes.get(i).printPath();
+//			} else {
+//				System.out.println("No path to get the cheese.");
+//			}
+//		}
 		
-		int i=0;
+		Maze maze = new Maze();
 		
-		while (i < mazes.size()) {
-			if(checkMazeSolution(mazes.get(i))) {
-				System.out.println("You won. The path to get cheese is: "); 
-				mazes.get(i).printPath();
-			} else {
-				System.out.println("No path to get the cheese.");
-			}
+		maze.maze = m;
+		maze.start = new Position(0,3);
+		maze.printMaze();
+		
+		
+		
+		if(checkMazeSolution(maze)) {
+			System.out.println("\nYou won! The path to get the cheese is: "); 
+			maze.printPath();
+		} else {
+			System.out.println("\nNo path to get the cheese.");
 		}
+		
+		
+		
 	}
 
 }

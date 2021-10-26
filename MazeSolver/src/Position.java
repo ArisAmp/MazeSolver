@@ -9,7 +9,7 @@ public class Position {
 	}
 	
 	public String getPosition() {
-		return this.x + " " + this.y;
+		return "("+this.x + "," + this.y+")";
 	}
 	
 	public int getPositionX() {
