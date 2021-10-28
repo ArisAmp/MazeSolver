@@ -11,18 +11,9 @@ import java.util.Scanner;
 
 public class MazeSolver {
 	
-		static int[][] m = {
-				{2, 0, 1, 1},
-				{1, 1, 1, 0},
-				{0, 0, 0, 1},
-		};
-		
-		
-		
 	//0 == wall
 	//1 == path
 	//2 == destination
-	
 	
 	//Method to find and output the path to solution.
 	public static boolean checkMazeSolution(Maze m) {
@@ -100,7 +91,7 @@ public class MazeSolver {
 	
 	
 	public static boolean isValid(int x, int y, Maze m) {
-		if (x < 0 || y < 0 || y >= m.maze.length || x >= m.maze[y].length ) {
+		if (x < 0 || x >= m.maze.length || y < 0 || y >= m.maze[x].length  ) {
 			return false;
 		}
 		return true;
@@ -127,6 +118,7 @@ public class MazeSolver {
 		
 		m.start = new Position(Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()));
 		
+		
 		m.printMaze();
 		mazes.add(m);
 		
@@ -134,10 +126,10 @@ public class MazeSolver {
 		int i =0;
 		while (i < mazes.size()) {
 			if(checkMazeSolution(mazes.get(i))) {
-				System.out.println("You won. The path to get cheese from start " + mazes.get(i).start.getPosition() +" is: "); 
+				System.out.println("You won. The path to get cheese starting from " + mazes.get(i).start.getPosition() +" is: "); 
 				mazes.get(i).printPath();
 			} else {
-				System.out.println("No path to get the cheese.");
+				System.out.println("No path to get the cheese starting from "  + mazes.get(i).start.getPosition() + ".");
 			}
 			
 			i++;
