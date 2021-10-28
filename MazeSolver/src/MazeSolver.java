@@ -27,7 +27,7 @@ public class MazeSolver {
 			System.out.println();
 			
 			if(checkMazeSolution(mazes.get(i))) {
-				System.out.println("You won. The path to get cheese starting from " + mazes.get(i).start.getPosition() +" is: "); 
+				System.out.println("You won! The path to get cheese starting from " + mazes.get(i).start.getPosition() +" is: "); 
 				mazes.get(i).printPath();
 				System.out.println();
 			} else {
